@@ -10,15 +10,23 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    login_page.cpp
+    login_page.cpp \
+    studentwindow.cpp
 
 HEADERS += \
-    login_page.h
+    course.h \
+    login_page.h \
+    student.h \
+    studentwindow.h
 
 FORMS += \
-    login_page.ui
+    login_page.ui \
+    studentwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    courses.txt

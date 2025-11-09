@@ -1,0 +1,4 @@
+CSCE1102 Programming2 Mon10-12
+MATH101 Calculus1 Sun8-10
+PHYS101 Physics1 Tue10-12
+CORE101 Humanities Wed12-2
