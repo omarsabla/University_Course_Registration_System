@@ -8,21 +8,29 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
+SSOURCES += \
     main.cpp \
     login_page.cpp \
-    studentwindow.cpp
+    studentwindow.cpp \
+    addstudent.cpp \
+    addcourse.cpp \
+    admindashboard.cpp \
+    course.cpp
 
 HEADERS += \
-    course.h \
     login_page.h \
-    student.h \
-    studentwindow.h
+    studentwindow.h \
+    addstudent.h \
+    addcourse.h \
+    admindashboard.h \
+    course.h
 
 FORMS += \
     login_page.ui \
-    studentwindow.ui
-
+    studentwindow.ui \
+    addstudent.ui \
+    addcourse.ui \
+    admindashboard.ui
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
