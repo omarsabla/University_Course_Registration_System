@@ -17,6 +17,9 @@ public:
     LogIn_Page(QWidget *parent = nullptr);
     ~LogIn_Page();
 
+private slots:
+    void on_SignIn_Push_Button_clicked();
+
 private:
     Ui::LogIn_Page *ui;
 };

@@ -5,10 +5,9 @@
 #include <QMessageBox>
 #include <QTableWidgetItem>
 
-StudentWindow::StudentWindow(const QString &studentUsername, QWidget *parent)
+StudentWindow::StudentWindow( QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::StudentWindow),
-    currentStudent(studentUsername)
 {
     ui->setupUi(this);
 
@@ -63,7 +62,7 @@ void StudentWindow::fillAvailableCoursesTable()
                                            new QTableWidgetItem(allCourses[i].timeSlot));
     }
 }
-
+/*
 void StudentWindow::fillMyCoursesTable()
 {
     const auto &v = currentStudent.registered;
@@ -85,8 +84,8 @@ void StudentWindow::fillMyCoursesTable()
                                     new QTableWidgetItem(v[i].timeSlot));
     }
 }
-
-void StudentWindow::on_registerButton_clicked()
+ */
+ /* void StudentWindow::on_registerButton_clicked()
 {
     int row = ui->availableCoursesTable->currentRow();
 
@@ -115,4 +114,4 @@ void StudentWindow::on_registerButton_clicked()
 
     QMessageBox::information(this, "Success", "Course registered.");
     fillMyCoursesTable();
-}
+} */

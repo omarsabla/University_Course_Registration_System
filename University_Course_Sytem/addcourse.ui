@@ -180,7 +180,7 @@
   <widget class="QPushButton" name="done_push_Button">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>50</x>
      <y>250</y>
      <width>100</width>
      <height>32</height>
@@ -188,6 +188,37 @@
    </property>
    <property name="text">
     <string>Done</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>16</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Course</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Cancel_Push_Button">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>250</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
    </property>
   </widget>
  </widget>
