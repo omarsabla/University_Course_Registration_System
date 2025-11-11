@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>240</y>
+     <y>350</y>
      <width>211</width>
      <height>91</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>50</y>
+     <x>60</x>
+     <y>80</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -44,37 +44,11 @@
     <string>Students:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Add_Instructor_Button">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>400</y>
-     <width>211</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Add Instructor</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="View_Course_Button">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>240</y>
-     <width>211</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>View Courses</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="add_Student_Button">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>100</y>
+     <y>150</y>
      <width>211</width>
      <height>91</height>
     </rect>
@@ -83,37 +57,24 @@
     <string>Add Student</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="View_Students_Button">
+  <widget class="QPushButton" name="Delete_Student_Push_Button">
    <property name="geometry">
     <rect>
      <x>330</x>
-     <y>100</y>
+     <y>150</y>
      <width>211</width>
      <height>91</height>
     </rect>
    </property>
    <property name="text">
-    <string>View Students</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="View_Instrcutor_Button">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>400</y>
-     <width>211</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>View Instructors</string>
+    <string>Delete Student</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>200</y>
+     <x>60</x>
+     <y>280</y>
      <width>171</width>
      <height>41</height>
     </rect>
@@ -127,22 +88,17 @@
     <string>Courses:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QPushButton" name="Delete_Push_Button">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>330</x>
      <y>350</y>
-     <width>221</width>
-     <height>41</height>
+     <width>211</width>
+     <height>91</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>36</pointsize>
-    </font>
-   </property>
    <property name="text">
-    <string>Instructors:</string>
+    <string>Delete Student</string>
    </property>
   </widget>
  </widget>

@@ -10,10 +10,7 @@
 using namespace std;
 class Registration_System
 {
-    vector<Student> studentList;
-    vector<Admin> adminList;
-    vector<Course> courseList;
-    vector<Instructor> instructorList;
+
 
 
 
@@ -22,6 +19,10 @@ public:
     map < string , string> studentPasswords;
     map < string , string > adminPasswords;
     map < string , string > instructorPasswords;
+    vector<Student> studentList;
+    vector<Admin> adminList;
+    vector<Course> courseList;
+    vector<Instructor> instructorList;
 
     Registration_System();
 };

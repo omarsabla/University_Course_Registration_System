@@ -15,6 +15,11 @@ public:
     explicit AddStudent(QWidget *parent = nullptr);
     ~AddStudent();
 
+private slots:
+    void on_done_Push_Button_clicked();
+
+    void on_Cancel_Push_Button_clicked();
+
 private:
     Ui::AddStudent *ui;
 };

@@ -10,6 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     admin.cpp \
+    deletecourse.cpp \
+    deletestudent.cpp \
     instructor.cpp \
     main.cpp \
     login_page.cpp \
@@ -23,6 +25,8 @@ SOURCES += \
 
 HEADERS += \
     admin.h \
+    deletecourse.h \
+    deletestudent.h \
     instructor.h \
     login_page.h \
     registration_system.h \
@@ -34,6 +38,8 @@ HEADERS += \
     studentwindow.h
 
 FORMS += \
+    deletecourse.ui \
+    deletestudent.ui \
     login_page.ui \
     addstudent.ui \
     addcourse.ui \

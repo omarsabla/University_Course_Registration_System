@@ -15,6 +15,17 @@ public:
     explicit adminDashboard(QWidget *parent = nullptr);
     ~adminDashboard();
 
+private slots:
+    void on_add_Student_Button_clicked();
+
+    void on_Add_Course_Button_clicked();
+
+
+    void on_Delete_Student_Push_Button_clicked();
+
+    void on_Delete_Course_Button_clicked();
+
+
 private:
     Ui::adminDashboard *ui;
 };

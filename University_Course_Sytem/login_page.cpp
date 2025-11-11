@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include "registration_system.h"
 #include "admindashboard.h"
+#include "studentwindow.h"
 using namespace std;
 
 LogIn_Page::LogIn_Page(QWidget *parent)
@@ -69,7 +70,9 @@ void LogIn_Page::on_SignIn_Push_Button_clicked()
         adminDashboard* AD1 = new adminDashboard(this);
         AD1  -> show();
     } else if (auth2 != r1.studentPasswords.end()&& y == auth2->second){
-
+        hide();
+        StudentWindow* SW = new StudentWindow(email, this);
+        SW -> show();
 
     }
 
