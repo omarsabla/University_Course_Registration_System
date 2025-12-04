@@ -2,7 +2,11 @@
 #define COURSE_H
 
 #include <QString>
-#include <QList>
+#include <vector>
+// Don't include student.h here - it will be included before course.h in files that need both
+// This breaks the circular dependency
+class Student;
+using namespace std;
 
 class Course {
 public:
@@ -13,14 +17,14 @@ public:
     int creditHours;
     QString timeSlot;
     int maxEnrollment;
-    QList<QString> enrolledStudents;
-    QList<QString> waitingList;
+    vector<Student> enrolledStudents;
+    vector<Student> waitingList;
 
     Course() = default;
     Course(QString id, QString name, QString instr, QString dept, int credits, QString time, int maxEnroll);
     bool isFull() const;
-    void enrollStudent(QString studentUsername);
-    void dropStudent(QString studentUsername);
+    void enrollStudent(const Student &student);
+    void dropStudent(const QString &studentId);
     QString toString() const;
     static Course fromString(const QString& line);
 };
