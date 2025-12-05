@@ -11,17 +11,11 @@ CONFIG += c++17
 SOURCES += \
     addinstructor.cpp \
     admin.cpp \
-    deletecourse.cpp \
-    deleteinstructor.cpp \
-    deletestudent.cpp \
     dropcoursewindow.cpp \
     instructor.cpp \
     instructorcourses.cpp \
     instructorschedule.cpp \
     instructorwindow.cpp \
-    listcourses.cpp \
-    listinstructors.cpp \
-    liststudents.cpp \
     main.cpp \
     login_page.cpp \
     registercourse.cpp \
@@ -35,23 +29,22 @@ SOURCES += \
     viewenrollment.cpp \
     viewschedule.cpp \
     editcourse.cpp \
+    editstudent.cpp \
+    editinstructor.cpp \
     reportspage.cpp \
-    statisticswindow.cpp
+    analytics.cpp \
+    viewdeletestudent.cpp \
+    viewdeletecourse.cpp \
+    viewdeleteinstructor.cpp
 
 HEADERS += \
     addinstructor.h \
     admin.h \
-    deletecourse.h \
-    deleteinstructor.h \
-    deletestudent.h \
     dropcoursewindow.h \
     instructor.h \
     instructorcourses.h \
     instructorschedule.h \
     instructorwindow.h \
-    listcourses.h \
-    listinstructors.h \
-    liststudents.h \
     login_page.h \
     registercourse.h \
     registration_system.h \
@@ -64,21 +57,20 @@ HEADERS += \
     viewenrollment.h \
     viewschedule.h \
     editcourse.h \
+    editstudent.h \
+    editinstructor.h \
     reportspage.h \
-    statisticswindow.h
+    analytics.h \
+    viewdeletestudent.h \
+    viewdeletecourse.h \
+    viewdeleteinstructor.h
 
 FORMS += \
     addinstructor.ui \
-    deletecourse.ui \
-    deleteinstructor.ui \
-    deletestudent.ui \
     dropcoursewindow.ui \
     instructorcourses.ui \
     instructorschedule.ui \
     instructorwindow.ui \
-    listcourses.ui \
-    listinstructors.ui \
-    liststudents.ui \
     login_page.ui \
     addstudent.ui \
     addcourse.ui \
@@ -88,8 +80,13 @@ FORMS += \
     viewenrollment.ui \
     viewschedule.ui \
     editcourse.ui \
+    editstudent.ui \
+    editinstructor.ui \
     reportspage.ui \
-    statisticswindow.ui
+    analytics.ui \
+    viewdeletestudent.ui \
+    viewdeletecourse.ui \
+    viewdeleteinstructor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

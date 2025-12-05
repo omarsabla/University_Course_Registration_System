@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>Admin Dashboard</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_main">
-   <item>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_4">
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout_3">
@@ -30,6 +30,16 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="Delete_Student_Push_Button">
+         <property name="text">
+          <string>Delete/View</string>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="add_Student_Button">
          <property name="text">
@@ -40,20 +50,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="Delete_Student_Push_Button">
-         <property name="text">
-          <string>Delete Student</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="2">
-        <widget class="QPushButton" name="List_Students_Button">
+        <widget class="QPushButton" name="Edit_Student">
          <property name="text">
-          <string>List Students</string>
+          <string>Edit Students</string>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -76,10 +76,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="Add_Course_Button">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Edit_Course_Button">
          <property name="text">
-          <string>Add Course</string>
+          <string>Edit Courses</string>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -89,27 +89,17 @@
        <item row="1" column="1">
         <widget class="QPushButton" name="Delete_Course_Button">
          <property name="text">
-          <string>Delete Course</string>
+          <string>Delete/View</string>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="List_Courses_Button">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="Add_Course_Button">
          <property name="text">
-          <string>List Courses</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="Edit_Course_Button">
-         <property name="text">
-          <string>Edit Course</string>
+          <string>Add Course</string>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -132,7 +122,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QPushButton" name="Add_Instructor_Button">
          <property name="text">
           <string>Add Instructor</string>
@@ -142,20 +132,64 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="Delete_Instructor_Button">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="Reports_Button">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
-          <string>Delete Instructor</string>
+          <string>Generate Reports</string>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="List_Instructors_Button">
+       <item row="2" column="1">
+        <widget class="QPushButton" name="Delete_Instructor_Button">
          <property name="text">
-          <string>List Instructors </string>
+          <string>Delete/View</string>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="Analytics">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Analytics:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="Anlytics">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Analytics</string>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="Edit_Instructors">
+         <property name="text">
+          <string>Edit Instructors</string>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -163,36 +197,6 @@
         </widget>
        </item>
       </layout>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_bottom">
-     <item>
-      <widget class="QPushButton" name="Statistics_Button">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>View Statistics</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="Reports_Button">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Generate Reports</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>

@@ -38,6 +38,45 @@ A comprehensive course registration and management system built with Qt and C++.
 - **Statistics Dashboard**: Comprehensive system analytics
 - **Report Generation**: Export detailed reports in TXT format
 
+## Team & Workload Distribution
+
+This project was developed by a team of 4 members with the following workload distribution:
+
+### Areege
+- **Admin Dashboard** (main interface)
+  - Admin dashboard UI design and layout
+  - Add/Delete/List functionality for students, courses, and instructors
+  - Integration of admin features
+  - *Note: Analytics and summary statistics were handled separately*
+
+### Abdullah
+- **Student Window & Features**
+  - Student main window interface
+  - Course registration functionality
+  - Drop courses feature
+  - View schedule implementation
+  - Student-specific UI components
+
+### Judy
+- **Course Management & Instructor Features**
+  - Course class implementation
+  - Course CRUD operations (Create, Read, Update, Delete)
+  - Instructor window and interface
+  - Instructor schedule view
+  - Instructor courses view
+  - View enrollment functionality
+  - Course-instructor relationship management
+
+### Omar
+- **Admin Dashboard Extensions & User Handling**
+  - Statistics and analytics window
+  - Reports generation and export functionality
+  - User authentication and login system
+  - Password validation and security
+  - File I/O and data persistence
+  - Registration system core functionality
+  - User session management
+
 ## Setup Instructions Using Qt Creator
 
 1. Open Qt Creator

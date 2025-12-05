@@ -292,7 +292,6 @@ void Registration_System::loadadmins(const QString &filename) {
     //if no admins loaded, create default ones
     if (adminPasswords.empty()) {
         adminPasswords["Admin1"] = "123";
-        adminPasswords["Admin2"] = "456";
     }
 }
 

@@ -38,9 +38,13 @@ private slots:
     
     void on_Edit_Course_Button_clicked();
     
+    void on_Edit_Student_clicked();
+    
+    void on_Edit_Instructors_clicked();
+    
     void on_Reports_Button_clicked();
     
-    void on_Statistics_Button_clicked();
+    void on_Anlytics_clicked();
 
 private:
     Ui::adminDashboard *ui;

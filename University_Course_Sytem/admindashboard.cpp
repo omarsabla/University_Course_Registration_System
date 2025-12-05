@@ -2,16 +2,15 @@
 #include "ui_admindashboard.h"
 #include "addstudent.h"
 #include "addcourse.h"
-#include "deletestudent.h"
-#include "deletecourse.h"
 #include "addinstructor.h"
-#include "deleteinstructor.h"
-#include "liststudents.h"
-#include "listcourses.h"
-#include "listinstructors.h"
+#include "viewdeletestudent.h"
+#include "viewdeletecourse.h"
+#include "viewdeleteinstructor.h"
 #include "editcourse.h"
+#include "editstudent.h"
+#include "editinstructor.h"
 #include "reportspage.h"
-#include "statisticswindow.h"
+#include "analytics.h"
 #include "registration_system.h"
 #include <QLabel>
 #include <QVBoxLayout>
@@ -54,15 +53,15 @@ void adminDashboard::on_Add_Course_Button_clicked()
 
 void adminDashboard::on_Delete_Student_Push_Button_clicked()
 {
-    DeleteStudent* DS = new DeleteStudent(this);
-    DS -> show();
+    viewdeletestudent* VDS = new viewdeletestudent(this);
+    VDS->show();
 }
 
 
 void adminDashboard::on_Delete_Course_Button_clicked()
 {
-    DeleteCourse* DC = new DeleteCourse(this);
-    DC ->show();
+    viewdeletecourse* VDC = new viewdeletecourse(this);
+    VDC->show();
 }
 
 
@@ -78,29 +77,29 @@ void adminDashboard::on_Add_Instructor_Button_clicked()
 
 void adminDashboard::on_Delete_Instructor_Button_clicked()
 {
-    deleteinstructor* DI = new deleteinstructor(this);
-    DI -> show();
+    viewdeleteinstructor* VDI = new viewdeleteinstructor(this);
+    VDI->show();
 }
 
 
 void adminDashboard::on_List_Students_Button_clicked()
 {
-    liststudents* LS = new liststudents(this);
-    LS -> show();
+    viewdeletestudent* VDS = new viewdeletestudent(this);
+    VDS->show();
 }
 
 
 void adminDashboard::on_List_Courses_Button_clicked()
 {
-    listcourses* LC = new listcourses(this);
-    LC -> show();
+    viewdeletecourse* VDC = new viewdeletecourse(this);
+    VDC->show();
 }
 
 
 void adminDashboard::on_List_Instructors_Button_clicked()
 {
-    listinstructors* LI = new listinstructors(this);
-    LI -> show();
+    viewdeleteinstructor* VDI = new viewdeleteinstructor(this);
+    VDI->show();
 }
 
 void adminDashboard::on_Edit_Course_Button_clicked()
@@ -109,15 +108,27 @@ void adminDashboard::on_Edit_Course_Button_clicked()
     EC->show();
 }
 
+void adminDashboard::on_Edit_Student_clicked()
+{
+    EditStudent* ES = new EditStudent(this);
+    ES->show();
+}
+
+void adminDashboard::on_Edit_Instructors_clicked()
+{
+    EditInstructor* EI = new EditInstructor(this);
+    EI->show();
+}
+
 void adminDashboard::on_Reports_Button_clicked()
 {
     ReportsPage* RP = new ReportsPage(this);
     RP->show();
 }
 
-void adminDashboard::on_Statistics_Button_clicked()
+void adminDashboard::on_Anlytics_clicked()
 {
-    StatisticsWindow* SW = new StatisticsWindow(this);
+    Analytics* SW = new Analytics(this);
     SW->show();
 }
 
