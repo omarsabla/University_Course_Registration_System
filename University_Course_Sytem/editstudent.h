@@ -26,5 +26,5 @@ private:
     QString selectedStudentId;
 };
 
-#endif // EDITSTUDENT_H
+#endif 
 

@@ -31,5 +31,5 @@ private:
     void exportReport(const QString &format);
 };
 
-#endif // REPORTSPAGE_H
+#endif 
 

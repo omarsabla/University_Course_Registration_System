@@ -13,15 +13,15 @@ viewdeletecourse::viewdeletecourse(QWidget *parent)
     ui->setupUi(this);
     populateTable();
     
-    //connect search line edit
+    
     connect(ui->searchLineEdit, &QLineEdit::textChanged, this, &viewdeletecourse::on_searchLineEdit_textChanged);
     
-    //auto-fill id when row is selected
+    
     connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, [this]() {
         QList<QTableWidgetItem*> selected = ui->tableWidget->selectedItems();
         if (!selected.isEmpty()) {
             int row = selected.first()->row();
-            QTableWidgetItem *idItem = ui->tableWidget->item(row, 0); //id is in column 0
+            QTableWidgetItem *idItem = ui->tableWidget->item(row, 0); 
             if (idItem) {
                 ui->idLineEdit->setText(idItem->text());
             }
@@ -36,34 +36,35 @@ viewdeletecourse::~viewdeletecourse()
 
 void viewdeletecourse::populateTable()
 {
-    //load courses
+    
+    r.loadinstructors();
     r.loadcourses();
     
     QTableWidget *table = ui->tableWidget;
     
-    //set column count and headers
+    
     table->setColumnCount(7);
     QStringList headers;
     headers << "Course ID" << "Course Name" << "Instructor" << "Department" 
             << "Credit Hours" << "Time Slot" << "Max Enrollment";
     table->setHorizontalHeaderLabels(headers);
     
-    //set row count
+    
     table->setRowCount(r.courseList.size());
     
-    //populate table
+    
     for (int i = 0; i < r.courseList.size(); ++i) {
         const Course &course = r.courseList[i];
         
         table->setItem(i, 0, new QTableWidgetItem(course.id));
         table->setItem(i, 1, new QTableWidgetItem(course.name));
-        table->setItem(i, 2, new QTableWidgetItem(course.instructor));
+        table->setItem(i, 2, new QTableWidgetItem(r.getInstructorName(course.instructorId)));
         table->setItem(i, 3, new QTableWidgetItem(course.department));
         table->setItem(i, 4, new QTableWidgetItem(QString::number(course.creditHours)));
         table->setItem(i, 5, new QTableWidgetItem(course.timeSlot));
         table->setItem(i, 6, new QTableWidgetItem(QString::number(course.maxEnrollment)));
         
-        //make items non-editable
+        
         for (int j = 0; j < 7; j++) {
             QTableWidgetItem *item = table->item(i, j);
             if (item) {
@@ -72,14 +73,14 @@ void viewdeletecourse::populateTable()
         }
     }
     
-    //formatting
+    
     table->setAlternatingRowColors(true);
     table->setSelectionBehavior(QAbstractItemView::SelectRows);
     table->setSelectionMode(QAbstractItemView::SingleSelection);
     table->setShowGrid(true);
     table->setSortingEnabled(true);
     
-    //style header
+    
     QHeaderView *header = table->horizontalHeader();
     header->setDefaultSectionSize(120);
     header->setStretchLastSection(false);
@@ -90,7 +91,7 @@ void viewdeletecourse::populateTable()
     headerFont.setPointSize(10);
     header->setFont(headerFont);
     
-    //set column widths
+    
     table->setColumnWidth(0, 100);
     table->setColumnWidth(1, 180);
     table->setColumnWidth(2, 120);
@@ -119,7 +120,7 @@ void viewdeletecourse::filterTable(const QString &searchText)
         if (searchText.isEmpty()) {
             match = true;
         } else {
-            //check all columns for match
+            
             for (int j = 0; j < table->columnCount(); ++j) {
                 QTableWidgetItem *item = table->item(i, j);
                 if (item && item->text().contains(searchText, Qt::CaseInsensitive)) {
@@ -142,10 +143,10 @@ void viewdeletecourse::on_Delete_Button_clicked()
         return;
     }
     
-    //reload courses
+    
     r.loadcourses();
     
-    //find and remove course
+    
     bool found = false;
     for (auto it = r.courseList.begin(); it != r.courseList.end(); ++it) {
         if (it->id == id) {
@@ -156,11 +157,11 @@ void viewdeletecourse::on_Delete_Button_clicked()
     }
     
     if (found) {
-        //save changes
+        
         r.savecourses();
         QMessageBox::information(this, "Success", "Course deleted successfully.");
         
-        //refresh table
+        
         populateTable();
         ui->idLineEdit->clear();
     } else {

@@ -23,11 +23,11 @@ viewenrollment::~viewenrollment()
 
 void viewenrollment::populateEnrollmentTable()
 {
-    //load instructor and course data
+    
     r.loadinstructors();
     r.loadcourses();
 
-    //find the instructor
+    
     Instructor currentInstructor;
     bool found = false;
     for (const auto &instructor : r.instructorList) {
@@ -45,10 +45,10 @@ void viewenrollment::populateEnrollmentTable()
     QTableWidget *table = ui->tableWidget;
     if (!table) return;
 
-    //clear existing rows
+    
     table->setRowCount(0);
 
-    //set column count - one column per course
+    
     int numCourses = currentInstructor.assignedCourses.size();
     if (numCourses == 0) {
         return;
@@ -56,14 +56,14 @@ void viewenrollment::populateEnrollmentTable()
 
     table->setColumnCount(numCourses);
 
-    //set headers to course titles
+    
     QStringList headers;
     int col = 0;
     for (const QString &courseId : currentInstructor.assignedCourses) {
-        //find the course to get its name
+        
         for (const auto &course : r.courseList) {
             if (course.id == courseId) {
-                headers << course.name;  //course title as header
+                headers << course.name;  
                 break;
             }
         }
@@ -71,7 +71,7 @@ void viewenrollment::populateEnrollmentTable()
     }
     table->setHorizontalHeaderLabels(headers);
 
-    //find max enrolled students
+    
     int maxStudents = 0;
     for (const QString &courseId : currentInstructor.assignedCourses) {
         for (const auto &course : r.courseList) {
@@ -85,21 +85,21 @@ void viewenrollment::populateEnrollmentTable()
         }
     }
 
-    //set row count to max students
+    
     table->setRowCount(maxStudents);
 
-    //populate each column with student emails
+    
     col = 0;
     for (const QString &courseId : currentInstructor.assignedCourses) {
-        //find the course
+        
         for (const auto &course : r.courseList) {
             if (course.id == courseId) {
-                //add student emails to this column
+                
                 int row = 0;
                 for (const auto &student : course.enrolledStudents) {
                     table->setItem(row, col, new QTableWidgetItem(student.email));
 
-                    //make item non-editable
+                    
                     QTableWidgetItem *item = table->item(row, col);
                     if (item) {
                         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
@@ -113,13 +113,13 @@ void viewenrollment::populateEnrollmentTable()
         col++;
     }
 
-    //formatting options
+    
     table->setAlternatingRowColors(true);
     table->setSelectionBehavior(QAbstractItemView::SelectItems);
     table->setSelectionMode(QAbstractItemView::SingleSelection);
     table->setShowGrid(true);
 
-    //style the header
+    
     QHeaderView *header = table->horizontalHeader();
     header->setDefaultSectionSize(200);
     header->setStretchLastSection(false);
@@ -130,7 +130,7 @@ void viewenrollment::populateEnrollmentTable()
     headerFont.setPointSize(10);
     header->setFont(headerFont);
 
-    //set column widths
+    
     for (int i = 0; i < numCourses; i++) {
         table->setColumnWidth(i, 200);
     }

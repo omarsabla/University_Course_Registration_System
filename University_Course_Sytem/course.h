@@ -11,7 +11,7 @@ class Course {
 public:
     QString id;
     QString name;
-    QString instructor;
+    QString instructorId;
     QString department;
     int creditHours;
     QString timeSlot;
@@ -20,7 +20,7 @@ public:
     vector<Student> waitingList;
 
     Course() = default;
-    Course(QString id, QString name, QString instr, QString dept, int credits, QString time, int maxEnroll);
+    Course(QString id, QString name, QString instrId, QString dept, int credits, QString time, int maxEnroll);
     bool isFull() const;
     void enrollStudent(const Student &student);
     void dropStudent(const QString &studentId);

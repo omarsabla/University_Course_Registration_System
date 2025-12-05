@@ -13,7 +13,7 @@ ReportsPage::ReportsPage(QWidget *parent)
 {
     ui->setupUi(this);
     
-    //load data
+    
     r.loadstudents();
     r.loadcourses();
     r.loadinstructors();
@@ -59,7 +59,7 @@ void ReportsPage::generateStudentSchedulesReport()
     report += "==========================================\n\n";
     
     for (const auto &student : r.studentList) {
-        report += QString("Student: %1 (ID: %2, Email: %3)\n").arg(student.name, student.id, student.email);
+        report += QString("Student: %1 %2 (ID: %3, Email: %4)\n").arg(student.firstName, student.lastName, student.id, student.email);
         report += "Registered Courses:\n";
         
         if (student.registered.empty()) {
@@ -83,7 +83,7 @@ void ReportsPage::generateCourseEnrollmentReport()
     
     for (const auto &course : r.courseList) {
         report += QString("Course: %1 (%2)\n").arg(course.name, course.id);
-        report += QString("Instructor: %1\n").arg(course.instructor);
+        report += QString("Instructor: %1\n").arg(r.getInstructorName(course.instructorId));
         report += QString("Department: %1\n").arg(course.department);
         report += QString("Time Slot: %1\n").arg(course.timeSlot);
         report += QString("Enrollment: %1/%2\n").arg(course.enrolledStudents.size()).arg(course.maxEnrollment);
@@ -94,14 +94,14 @@ void ReportsPage::generateCourseEnrollmentReport()
             report += "  No students enrolled.\n";
         } else {
             for (const auto &student : course.enrolledStudents) {
-                report += QString("  - %1 (%2) - %3\n").arg(student.name, student.id, student.email);
+                report += QString("  - %1 %2 (%3) - %4\n").arg(student.firstName, student.lastName, student.id, student.email);
             }
         }
         
         if (!course.waitingList.empty()) {
             report += "Waitlisted Students:\n";
             for (const auto &student : course.waitingList) {
-                report += QString("  - %1 (%2) - %3\n").arg(student.name, student.id, student.email);
+                report += QString("  - %1 %2 (%3) - %4\n").arg(student.firstName, student.lastName, student.id, student.email);
             }
         }
         report += "\n";
@@ -117,7 +117,7 @@ void ReportsPage::generateInstructorWorkloadReport()
     report += "==========================================\n\n";
     
     for (const auto &instructor : r.instructorList) {
-        report += QString("Instructor: %1 (ID: %2, Email: %3)\n").arg(instructor.Name, instructor.InstructorId, instructor.Email);
+        report += QString("Instructor: %1 %2 (ID: %3, Email: %4)\n").arg(instructor.FirstName, instructor.LastName, instructor.InstructorId, instructor.Email);
         report += "Assigned Courses:\n";
         
         if (instructor.assignedCourses.empty()) {
@@ -125,7 +125,7 @@ void ReportsPage::generateInstructorWorkloadReport()
         } else {
             int totalEnrollment = 0;
             for (const QString &courseId : instructor.assignedCourses) {
-                //find course details
+                
                 for (const auto &course : r.courseList) {
                     if (course.id == courseId) {
                         report += QString("  - %1 (%2) - %3 students enrolled\n")
@@ -153,7 +153,7 @@ void ReportsPage::exportReport(const QString &format)
         return;
     }
     
-    //ensure .txt extension
+    
     if (!fileName.endsWith(".txt", Qt::CaseInsensitive)) {
         fileName += ".txt";
     }

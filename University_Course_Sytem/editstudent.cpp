@@ -23,9 +23,9 @@ void EditStudent::populateStudentsList()
     r.loadstudents();
     
     QTableWidget *table = ui->tableWidget;
-    table->setColumnCount(4);
+    table->setColumnCount(5);
     QStringList headers;
-    headers << "Student ID" << "Name" << "Email" << "Password";
+    headers << "Student ID" << "First Name" << "Last Name" << "Email" << "Password";
     table->setHorizontalHeaderLabels(headers);
     
     table->setRowCount(r.studentList.size());
@@ -33,11 +33,12 @@ void EditStudent::populateStudentsList()
     for (int i = 0; i < r.studentList.size(); ++i) {
         const Student &student = r.studentList[i];
         table->setItem(i, 0, new QTableWidgetItem(student.id));
-        table->setItem(i, 1, new QTableWidgetItem(student.name));
-        table->setItem(i, 2, new QTableWidgetItem(student.email));
-        table->setItem(i, 3, new QTableWidgetItem(student.password));
+        table->setItem(i, 1, new QTableWidgetItem(student.firstName));
+        table->setItem(i, 2, new QTableWidgetItem(student.lastName));
+        table->setItem(i, 3, new QTableWidgetItem(student.email));
+        table->setItem(i, 4, new QTableWidgetItem(student.password));
         
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < 5; j++) {
             QTableWidgetItem *item = table->item(i, j);
             if (item) {
                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);
@@ -66,12 +67,13 @@ void EditStudent::on_Select_Button_clicked()
     
     selectedStudentId = idItem->text();
     
-    //find student and populate edit fields
+    
     r.loadstudents();
     for (const auto &student : r.studentList) {
         if (student.id == selectedStudentId) {
             ui->idLineEdit->setText(student.id);
-            ui->nameLineEdit->setText(student.name);
+            ui->nameLineEdit->setText(student.firstName);
+            ui->LastName->setText(student.lastName);
             ui->emailLineEdit->setText(student.email);
             ui->passwordLineEdit->setText(student.password);
             break;
@@ -86,17 +88,18 @@ void EditStudent::on_Save_Button_clicked()
         return;
     }
     
-    QString name = ui->nameLineEdit->text();
-    QString email = ui->emailLineEdit->text();
+    QString firstName = ui->nameLineEdit->text().trimmed();
+    QString lastName = ui->LastName->text().trimmed();
+    QString email = ui->emailLineEdit->text().trimmed();
     QString password = ui->passwordLineEdit->text();
     
-    //validate fields
-    if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+    
+    if (firstName.isEmpty() || email.isEmpty() || password.isEmpty()) {
         QMessageBox::warning(this, "Error", "All fields must be filled out.");
         return;
     }
     
-    //validate password
+    
     if (password.length() < 8) {
         QMessageBox::warning(this, "Error", "Password must be at least 8 characters long.");
         return;
@@ -115,12 +118,13 @@ void EditStudent::on_Save_Button_clicked()
         return;
     }
     
-    //find and update student
+    
     r.loadstudents();
     bool found = false;
     for (auto &student : r.studentList) {
         if (student.id == selectedStudentId) {
-            student.name = name;
+            student.firstName = firstName;
+            student.lastName = lastName;
             student.email = email;
             student.password = password;
             found = true;
@@ -133,9 +137,10 @@ void EditStudent::on_Save_Button_clicked()
         QMessageBox::information(this, "Success", "Student updated successfully.");
         populateStudentsList();
         selectedStudentId = "";
-        //clear fields
+        
         ui->idLineEdit->clear();
         ui->nameLineEdit->clear();
+        ui->LastName->clear();
         ui->emailLineEdit->clear();
         ui->passwordLineEdit->clear();
     } else {

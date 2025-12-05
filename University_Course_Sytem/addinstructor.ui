@@ -31,7 +31,7 @@
     <string>Add Instructor</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -41,51 +41,24 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="1">
+    <item row="3" column="1">
      <widget class="QLineEdit" name="Password_LineEdit">
       <property name="text">
        <string/>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>ID</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
+    <item row="2" column="1">
      <widget class="QLineEdit" name="email_line_Edit"/>
     </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="name_Line_Edit"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_5">
+    <item row="5" column="0">
+     <widget class="QPushButton" name="Cancel_Push_Button">
       <property name="text">
-       <string>Password</string>
+       <string>Cancel</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QLineEdit" name="id_Line_Edit"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Email</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
+    <item row="5" column="1">
      <widget class="QPushButton" name="done_Push_Button">
       <property name="text">
        <string>Done</string>
@@ -95,10 +68,47 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QPushButton" name="Cancel_Push_Button">
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="name_Line_Edit"/>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="id_Line_Edit"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
       <property name="text">
-       <string>Cancel</string>
+       <string>First Name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Password</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="LastName"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Last Name</string>
       </property>
      </widget>
     </item>

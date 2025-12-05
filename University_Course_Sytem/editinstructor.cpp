@@ -23,9 +23,9 @@ void EditInstructor::populateInstructorsList()
     r.loadinstructors();
     
     QTableWidget *table = ui->tableWidget;
-    table->setColumnCount(4);
+    table->setColumnCount(5);
     QStringList headers;
-    headers << "Instructor ID" << "Name" << "Email" << "Password";
+    headers << "Instructor ID" << "First Name" << "Last Name" << "Email" << "Password";
     table->setHorizontalHeaderLabels(headers);
     
     table->setRowCount(r.instructorList.size());
@@ -33,11 +33,12 @@ void EditInstructor::populateInstructorsList()
     for (int i = 0; i < r.instructorList.size(); ++i) {
         const Instructor &instructor = r.instructorList[i];
         table->setItem(i, 0, new QTableWidgetItem(instructor.InstructorId));
-        table->setItem(i, 1, new QTableWidgetItem(instructor.Name));
-        table->setItem(i, 2, new QTableWidgetItem(instructor.Email));
-        table->setItem(i, 3, new QTableWidgetItem(instructor.instructorPassword));
+        table->setItem(i, 1, new QTableWidgetItem(instructor.FirstName));
+        table->setItem(i, 2, new QTableWidgetItem(instructor.LastName));
+        table->setItem(i, 3, new QTableWidgetItem(instructor.Email));
+        table->setItem(i, 4, new QTableWidgetItem(instructor.instructorPassword));
         
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < 5; j++) {
             QTableWidgetItem *item = table->item(i, j);
             if (item) {
                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);
@@ -66,12 +67,13 @@ void EditInstructor::on_Select_Button_clicked()
     
     selectedInstructorId = idItem->text();
     
-    //find instructor and populate edit fields
+    
     r.loadinstructors();
     for (const auto &instructor : r.instructorList) {
         if (instructor.InstructorId == selectedInstructorId) {
             ui->idLineEdit->setText(instructor.InstructorId);
-            ui->nameLineEdit->setText(instructor.Name);
+            ui->nameLineEdit->setText(instructor.FirstName);
+            ui->LastName->setText(instructor.LastName);
             ui->emailLineEdit->setText(instructor.Email);
             ui->passwordLineEdit->setText(instructor.instructorPassword);
             break;
@@ -86,17 +88,18 @@ void EditInstructor::on_Save_Button_clicked()
         return;
     }
     
-    QString name = ui->nameLineEdit->text();
-    QString email = ui->emailLineEdit->text();
+    QString firstName = ui->nameLineEdit->text().trimmed();
+    QString lastName = ui->LastName->text().trimmed();
+    QString email = ui->emailLineEdit->text().trimmed();
     QString password = ui->passwordLineEdit->text();
     
-    //validate fields
-    if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+    
+    if (firstName.isEmpty() || email.isEmpty() || password.isEmpty()) {
         QMessageBox::warning(this, "Error", "All fields must be filled out.");
         return;
     }
     
-    //validate password
+    
     if (password.length() < 8) {
         QMessageBox::warning(this, "Error", "Password must be at least 8 characters long.");
         return;
@@ -115,12 +118,13 @@ void EditInstructor::on_Save_Button_clicked()
         return;
     }
     
-    //find and update instructor
+    
     r.loadinstructors();
     bool found = false;
     for (auto &instructor : r.instructorList) {
         if (instructor.InstructorId == selectedInstructorId) {
-            instructor.Name = name;
+            instructor.FirstName = firstName;
+            instructor.LastName = lastName;
             instructor.Email = email;
             instructor.instructorPassword = password;
             found = true;
@@ -133,9 +137,10 @@ void EditInstructor::on_Save_Button_clicked()
         QMessageBox::information(this, "Success", "Instructor updated successfully.");
         populateInstructorsList();
         selectedInstructorId = "";
-        //clear fields
+        
         ui->idLineEdit->clear();
         ui->nameLineEdit->clear();
+        ui->LastName->clear();
         ui->emailLineEdit->clear();
         ui->passwordLineEdit->clear();
     } else {

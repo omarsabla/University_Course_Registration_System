@@ -26,5 +26,5 @@ private:
     QString selectedCourseId;
 };
 
-#endif // EDITCOURSE_H
+#endif 
 

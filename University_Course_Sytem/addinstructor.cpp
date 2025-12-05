@@ -20,10 +20,11 @@ addinstructor::~addinstructor()
 
 void addinstructor::on_done_Push_Button_clicked()
 {
-    QString name, email, id;
-    name = ui->name_Line_Edit->text();
-    id = ui->id_Line_Edit->text();
-    email = ui->email_line_Edit->text();
+    QString firstName, lastName, email, id;
+    firstName = ui->name_Line_Edit->text().trimmed();
+    lastName = ui->LastName->text().trimmed();
+    id = ui->id_Line_Edit->text().trimmed();
+    email = ui->email_line_Edit->text().trimmed();
 
     QString pass = ui->Password_LineEdit->text();
 
@@ -45,15 +46,15 @@ void addinstructor::on_done_Push_Button_clicked()
         return;
     }
 
-    if (name.isEmpty() || id.isEmpty() || email.isEmpty() || pass.isEmpty()) {
+    if (firstName.isEmpty() || lastName.isEmpty() || id.isEmpty() || email.isEmpty() || pass.isEmpty()) {
         QMessageBox::warning(this, "Error", "All fields must be filled out.");
         return;
     }
 
-    Instructor newInstructor(name, email, id, pass);
+    Instructor newInstructor(firstName, lastName, email, id, pass);
     r.instructorList.push_back(newInstructor);
     
-    // Save all instructors - password map will be automatically created/updated
+    
     r.saveinstructors();
     
     hide();

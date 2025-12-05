@@ -26,4 +26,4 @@ private:
     void populateRegisteredCoursesTable();
 };
 
-#endif // DROPCOURSEWINDOW_H
+#endif 

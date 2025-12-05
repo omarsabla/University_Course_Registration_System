@@ -26,5 +26,5 @@ private:
     QString selectedInstructorId;
 };
 
-#endif // EDITINSTRUCTOR_H
+#endif 
 

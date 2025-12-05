@@ -2,9 +2,9 @@
 #define REGISTRATION_SYSTEM_H
 #include <vector>
 #include <map>
-//include student first so its defined before course uses it
+
 #include "student.h"
-#include "course.h"  //student already defined so vector works
+#include "course.h"  
 #include "admin.h"
 #include "instructor.h"
 #include <string>
@@ -35,8 +35,11 @@ public:
     void savecourses(const QString &filename = "/Users/yasser/University_Course_Registration_System/University_Course_Sytem/courses.txt");
     void loadcourses(const QString &filename = "/Users/yasser/University_Course_Registration_System/University_Course_Sytem/courses.txt");
     void loadadmins(const QString &filename = "/Users/yasser/University_Course_Registration_System/University_Course_Sytem/admins.txt");
+    
+    
+    QString getInstructorName(const QString &instructorId) const;
 };
 
-#endif // REGISTRATION_SYSTEM_H
+#endif 
 extern Registration_System r;
 

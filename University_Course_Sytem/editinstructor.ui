@@ -59,6 +59,16 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="nameLineEdit"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_password">
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_id">
        <property name="text">
@@ -76,32 +86,32 @@
      <item row="1" column="0">
       <widget class="QLabel" name="label_name">
        <property name="text">
-        <string>Name:</string>
+        <string>First Name:</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="nameLineEdit"/>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="emailLineEdit"/>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="label_email">
        <property name="text">
         <string>Email:</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="emailLineEdit"/>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="passwordLineEdit"/>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_password">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>Password:</string>
+        <string>Last Name:</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="passwordLineEdit"/>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="LastName"/>
      </item>
     </layout>
    </item>
@@ -131,4 +141,3 @@
  <resources/>
  <connections/>
 </ui>
-

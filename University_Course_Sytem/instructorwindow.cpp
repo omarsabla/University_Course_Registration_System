@@ -12,19 +12,19 @@ InstructorWindow::InstructorWindow(const QString &instructorEmail, QWidget *pare
 {
     ui->setupUi(this);
     
-    //load instructors to get instructor name
+    
     r.loadinstructors();
     
-    //find instructor and set welcome message
+    
     QString instructorName = "Instructor";
     for (const auto &instructor : r.instructorList) {
         if (instructor.Email == instructorEmail) {
-            instructorName = instructor.Name;
+            instructorName = instructor.FirstName + " " + instructor.LastName;
             break;
         }
     }
     
-    //set welcome message
+    
     ui->label->setText("Welcome " + instructorName);
 }
 

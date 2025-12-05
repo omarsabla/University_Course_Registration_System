@@ -26,5 +26,5 @@ private:
     void populateTable();
 };
 
-#endif // VIEWDELETEINSTRUCTOR_H
+#endif 
 

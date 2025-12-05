@@ -28,4 +28,4 @@ private:
     void filterCoursesTable(const QString &searchText);
 };
 
-#endif // REGISTERCOURSE_H
+#endif 

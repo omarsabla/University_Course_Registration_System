@@ -29,7 +29,7 @@ LogIn_Page::~LogIn_Page()
 
 void LogIn_Page::on_SignIn_Push_Button_clicked()
 {
-    //load all data using registration system methods
+    
     r.loadadmins();
     r.loadinstructors();
     r.loadstudents();

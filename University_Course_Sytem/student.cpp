@@ -1,9 +1,9 @@
 #include "student.h"
 #include "course.h"
 
-//Student::Student() {}
 
-Student::Student(const QString &name, const QString &email, const QString &id, const QString &password) : name(name), email(email), id(id), password(password) {}
+
+Student::Student(const QString &firstName, const QString &lastName, const QString &email, const QString &id, const QString &password) : firstName(firstName), lastName(lastName), email(email), id(id), password(password) {}
 
 bool Student::hasTimeConflict(const Course &c) {
     for (const auto &reg : registered)

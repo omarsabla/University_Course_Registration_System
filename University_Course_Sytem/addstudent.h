@@ -24,4 +24,4 @@ private:
     Ui::AddStudent *ui;
 };
 
-#endif // ADDSTUDENT_H
+#endif 

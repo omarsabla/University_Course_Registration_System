@@ -24,4 +24,4 @@ private:
     void populateCoursesTable();
 };
 
-#endif // INSTRUCTORCOURSES_H
+#endif 

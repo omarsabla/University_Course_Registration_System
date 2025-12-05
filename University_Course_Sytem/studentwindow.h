@@ -11,7 +11,7 @@ namespace Ui {
 class StudentWindow;
 }
 
-// Forward declaration
+
 class registercourse;
 
 class StudentWindow : public QMainWindow

@@ -24,4 +24,4 @@ private:
     Ui::AddCourse *ui;
 };
 
-#endif // ADDCOURSE_H
+#endif 

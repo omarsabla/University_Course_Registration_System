@@ -23,7 +23,7 @@ adminDashboard::adminDashboard(const QString &adminEmail, QWidget *parent)
 {
     ui->setupUi(this);
     
-    //load data
+    
     r.loadadmins();
     r.loadstudents();
     r.loadcourses();

@@ -20,22 +20,22 @@ AddCourse::~AddCourse()
 
 void AddCourse::on_done_push_Button_clicked()
 {
-    QString name = ui->nameLE->text();
-    QString id = ui->idLE->text();
-    QString creditStr = ui->cdLE->text();
-    QString enrollmentStr = ui->meLE->text();
-    QString schedule = ui->stLE->text();
-    QString department = ui->Department->text();
-    QString instructorId = ui->instrcutor_ID->text();
+    QString name = ui->nameLE->text().trimmed();
+    QString id = ui->idLE->text().trimmed();
+    QString creditStr = ui->cdLE->text().trimmed();
+    QString enrollmentStr = ui->meLE->text().trimmed();
+    QString schedule = ui->stLE->text().trimmed();
+    QString department = ui->Department->text().trimmed();
+    QString instructorId = ui->instrcutor_ID->text().trimmed();
 
-    //validate fields
+    
     if (name.isEmpty() || id.isEmpty() || creditStr.isEmpty() || 
         enrollmentStr.isEmpty() || schedule.isEmpty() || department.isEmpty() || instructorId.isEmpty()) {
         QMessageBox::warning(this, "Error", "All fields must be filled out.");
         return;
     }
 
-    //convert to int
+    
     bool creditOk, enrollmentOk;
     int creditHours = creditStr.toInt(&creditOk);
     int maxEnrollment = enrollmentStr.toInt(&enrollmentOk);
@@ -45,7 +45,7 @@ void AddCourse::on_done_push_Button_clicked()
         return;
     }
 
-    //check if course id exists
+    
     r.loadcourses();
     for (const auto &course : r.courseList) {
         if (course.id == id) {
@@ -54,16 +54,20 @@ void AddCourse::on_done_push_Button_clicked()
         }
     }
 
-    //load instructors
+    
     r.loadinstructors();
     
-    //find instructor by id
-    QString instructorName = "";
+    
+    if (r.instructorList.empty()) {
+        QMessageBox::warning(this, "Error", "No instructors found in the system. Please add an instructor first.");
+        return;
+    }
+    
+    
     bool instructorFound = false;
     int instructorIndex = -1;
     for (size_t i = 0; i < r.instructorList.size(); i++) {
-        if (r.instructorList[i].InstructorId == instructorId) {
-            instructorName = r.instructorList[i].Name;
+        if (r.instructorList[i].InstructorId.trimmed() == instructorId) {
             instructorIndex = i;
             instructorFound = true;
             break;
@@ -71,21 +75,28 @@ void AddCourse::on_done_push_Button_clicked()
     }
     
     if (!instructorFound) {
-        QMessageBox::warning(this, "Error", "Instructor with this ID does not exist.");
+        
+        QString availableIds = "Available Instructor IDs:\n";
+        for (const auto &instructor : r.instructorList) {
+            availableIds += QString("  - %1 (%2 %3)\n").arg(instructor.InstructorId, instructor.FirstName, instructor.LastName);
+        }
+        QMessageBox::warning(this, "Error", 
+            QString("Instructor with ID '%1' does not exist.\n\n%2").arg(instructorId, availableIds));
         return;
     }
 
-    //create new course
-    Course newCourse(id, name, instructorName, department, creditHours, schedule, maxEnrollment);
+    
+    Course newCourse(id, name, instructorId, department, creditHours, schedule, maxEnrollment);
     r.courseList.push_back(newCourse);
     
-    //add course to instructor
+    
     r.instructorList[instructorIndex].assignedCourses.push_back(id);
     
-    //save courses and instructors
+    
     r.savecourses();
     r.saveinstructors();
 
+    QString instructorName = r.instructorList[instructorIndex].FirstName + " " + r.instructorList[instructorIndex].LastName;
     QMessageBox::information(this, "Success", "Course added successfully and assigned to " + instructorName + ".");
     hide();
 }

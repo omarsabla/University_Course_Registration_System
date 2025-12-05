@@ -41,21 +41,8 @@
    <item row="5" column="2">
     <widget class="QLineEdit" name="stLE"/>
    </item>
-   <item row="5" column="4">
-    <widget class="QLineEdit" name="InstructorLe"/>
-   </item>
    <item row="4" column="2">
     <widget class="QLineEdit" name="cdLE"/>
-   </item>
-   <item row="7" column="4">
-    <widget class="QPushButton" name="done_push_Button">
-     <property name="text">
-      <string>Done</string>
-     </property>
-     <property name="default">
-      <bool>true</bool>
-     </property>
-    </widget>
    </item>
    <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="label_9">
@@ -90,13 +77,6 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="3">
-    <widget class="QLabel" name="label_8">
-     <property name="text">
-      <string>Instructor</string>
-     </property>
-    </widget>
-   </item>
    <item row="3" column="4">
     <widget class="QLineEdit" name="idLE"/>
    </item>
@@ -123,9 +103,6 @@
    <item row="6" column="2">
     <widget class="QLineEdit" name="Department"/>
    </item>
-   <item row="6" column="4">
-    <widget class="QLineEdit" name="instrcutor_ID"/>
-   </item>
    <item row="6" column="0">
     <widget class="QLabel" name="label_10">
      <property name="text">
@@ -133,10 +110,23 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="3">
+   <item row="5" column="3">
     <widget class="QLabel" name="label_11">
      <property name="text">
       <string>Instructor ID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="4">
+    <widget class="QLineEdit" name="instrcutor_ID"/>
+   </item>
+   <item row="7" column="4">
+    <widget class="QPushButton" name="done_push_Button">
+     <property name="text">
+      <string>Done</string>
+     </property>
+     <property name="default">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

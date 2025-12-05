@@ -17,4 +17,4 @@ public:
     void removeInstructor();
 };
 
-#endif // ADMIN_H
+#endif 

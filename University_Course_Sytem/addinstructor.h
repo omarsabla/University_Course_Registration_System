@@ -23,4 +23,4 @@ private:
     Ui::addinstructor *ui;
 };
 
-#endif // ADDINSTRUCTOR_H
+#endif 

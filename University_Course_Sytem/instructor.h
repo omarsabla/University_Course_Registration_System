@@ -8,17 +8,18 @@ class Instructor
 {
 public:
     QString InstructorId;
-    QString Name;
+    QString FirstName;
+    QString LastName;
     QString Email;
     QString instructorPassword;
-    vector<QString> assignedCourses;  // Vector of course IDs
+    vector<QString> assignedCourses;
 
     Instructor();
-    Instructor(const QString &name, const QString &email, const QString &id, const QString &password);
+    Instructor(const QString &firstName, const QString &lastName, const QString &email, const QString &id, const QString &password);
     void assignCourses();
     void viewCourses();
     void trackEnrollment();
 
 };
 
-#endif // INSTRUCTOR_H
+#endif 

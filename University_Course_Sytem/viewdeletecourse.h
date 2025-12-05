@@ -26,5 +26,5 @@ private:
     void populateTable();
 };
 
-#endif // VIEWDELETECOURSE_H
+#endif 
 

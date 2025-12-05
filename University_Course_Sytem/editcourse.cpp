@@ -20,6 +20,7 @@ EditCourse::~EditCourse()
 
 void EditCourse::populateCoursesList()
 {
+    r.loadinstructors();
     r.loadcourses();
     
     QTableWidget *table = ui->tableWidget;
@@ -35,7 +36,7 @@ void EditCourse::populateCoursesList()
         const Course &course = r.courseList[i];
         table->setItem(i, 0, new QTableWidgetItem(course.id));
         table->setItem(i, 1, new QTableWidgetItem(course.name));
-        table->setItem(i, 2, new QTableWidgetItem(course.instructor));
+        table->setItem(i, 2, new QTableWidgetItem(r.getInstructorName(course.instructorId)));
         table->setItem(i, 3, new QTableWidgetItem(course.department));
         table->setItem(i, 4, new QTableWidgetItem(QString::number(course.creditHours)));
         table->setItem(i, 5, new QTableWidgetItem(course.timeSlot));
@@ -70,13 +71,13 @@ void EditCourse::on_Select_Button_clicked()
     
     selectedCourseId = idItem->text();
     
-    //find course and populate edit fields
+    
     r.loadcourses();
     for (const auto &course : r.courseList) {
         if (course.id == selectedCourseId) {
             ui->idLineEdit->setText(course.id);
             ui->nameLineEdit->setText(course.name);
-            ui->instructorLineEdit->setText(course.instructor);
+            ui->instructorLineEdit->setText(course.instructorId);
             ui->departmentLineEdit->setText(course.department);
             ui->creditsLineEdit->setText(QString::number(course.creditHours));
             ui->timeSlotLineEdit->setText(course.timeSlot);
@@ -100,7 +101,7 @@ void EditCourse::on_Save_Button_clicked()
     QString timeSlot = ui->timeSlotLineEdit->text();
     QString maxEnrollStr = ui->maxEnrollmentLineEdit->text();
     
-    //validate fields
+    
     if (name.isEmpty() || instructor.isEmpty() || department.isEmpty() || 
         creditsStr.isEmpty() || timeSlot.isEmpty() || maxEnrollStr.isEmpty()) {
         QMessageBox::warning(this, "Error", "All fields must be filled out.");
@@ -116,13 +117,13 @@ void EditCourse::on_Save_Button_clicked()
         return;
     }
     
-    //find and update course
+    
     r.loadcourses();
     bool found = false;
     for (auto &course : r.courseList) {
         if (course.id == selectedCourseId) {
             course.name = name;
-            course.instructor = instructor;
+            course.instructorId = instructor;
             course.department = department;
             course.creditHours = creditHours;
             course.timeSlot = timeSlot;
@@ -137,7 +138,7 @@ void EditCourse::on_Save_Button_clicked()
         QMessageBox::information(this, "Success", "Course updated successfully.");
         populateCoursesList();
         selectedCourseId = "";
-        //clear fields
+        
         ui->idLineEdit->clear();
         ui->nameLineEdit->clear();
         ui->instructorLineEdit->clear();

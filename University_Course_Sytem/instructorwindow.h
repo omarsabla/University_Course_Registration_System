@@ -25,4 +25,4 @@ private:
     QString instructorEmail;
 };
 
-#endif // INSTRUCTORWINDOW_H
+#endif 

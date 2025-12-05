@@ -13,14 +13,14 @@
 StudentWindow::StudentWindow(const QString &studentUsername, QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::StudentWindow),
-    currentStudent("", studentUsername, "", "")
+    currentStudent("", "", studentUsername, "", "")
 {
     ui->setupUi(this);
     
-    //load students
+    
     r.loadstudents();
     
-    //find student
+    
     bool found = false;
     for (const auto &student : r.studentList) {
         if (student.email == studentUsername) {
@@ -31,18 +31,18 @@ StudentWindow::StudentWindow(const QString &studentUsername, QWidget *parent)
     }
     
     if (!found) {
-        //student not found
+        
         QMessageBox::warning(this, "Warning", "Student data not found. Some features may not work.");
     }
 
-    //set welcome message
-    ui->welcome_Message->setText("Welcome " + currentStudent.name);
+    
+    ui->welcome_Message->setText("Welcome " + currentStudent.firstName + " " + currentStudent.lastName);
 
     loadCoursesFromFile();
     fillAvailableCoursesTable();
     fillMyCoursesTable();
     
-    //load courses
+    
     r.loadcourses();
 }
 
@@ -55,10 +55,10 @@ void StudentWindow::loadCoursesFromFile()
 {
     allCourses.clear();
 
-    //load courses
+    
     r.loadcourses();
     
-    //copy to allcourses
+    
     for (const auto &course : r.courseList) {
         allCourses.append(course);
     }
@@ -68,7 +68,7 @@ void StudentWindow::loadCoursesFromFile()
 
 void StudentWindow::on_registercourse_Button_clicked()
 {
-    //reload student data
+    
     r.loadstudents();
     for (const auto &student : r.studentList) {
         if (student.id == currentStudent.id) {
@@ -83,21 +83,21 @@ void StudentWindow::on_registercourse_Button_clicked()
 
 void StudentWindow::fillAvailableCoursesTable()
 {
-    //load courses
+    
     r.loadcourses();
     
-    //reload courses
+    
     loadCoursesFromFile();
     
-    //placeholder for table
+    
 }
 
 void StudentWindow::fillMyCoursesTable()
 {
-    // Reload student data to get latest registered courses
+    
     r.loadstudents();
     
-    //find and update student
+    
     for (const auto &student : r.studentList) {
         if (student.id == currentStudent.id) {
             currentStudent = student;
@@ -105,18 +105,18 @@ void StudentWindow::fillMyCoursesTable()
         }
     }
     
-    //placeholder for table
+    
 }
 
 void StudentWindow::on_registerButton_clicked()
 {
-    //placeholder for registration
+    
     QMessageBox::information(this, "Register", "Course registration functionality");
 }
 
 void StudentWindow::on_pushButton_clicked()
 {
-    //placeholder
+    
     QMessageBox::information(this, "Action", "Button clicked");
 }
 
@@ -129,7 +129,7 @@ void StudentWindow::on_pushButton_3_clicked()
 
 void StudentWindow::on_Drop_Course_Button_clicked()
 {
-    //reload student data
+    
     r.loadstudents();
     for (const auto &student : r.studentList) {
         if (student.id == currentStudent.id) {
@@ -145,7 +145,7 @@ void StudentWindow::on_Drop_Course_Button_clicked()
 
 void StudentWindow::on_pushButton_2_clicked()
 {
-    // Reload student data to get latest registered courses
+    
     r.loadstudents();
     for (const auto &student : r.studentList) {
         if (student.id == currentStudent.id) {

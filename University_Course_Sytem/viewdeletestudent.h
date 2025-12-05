@@ -26,5 +26,5 @@ private:
     void populateTable();
 };
 
-#endif // VIEWDELETESTUDENT_H
+#endif 
 
