@@ -14,64 +14,56 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="welcome_Message">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>20</y>
-      <width>111</width>
-      <height>16</height>
+      <x>80</x>
+      <y>70</y>
+      <width>301</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string>Available Courses</string>
+     <string>Welcome </string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="availableCoursesTable">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>50</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="registerButton">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
+      <x>180</x>
       <y>250</y>
-      <width>191</width>
-      <height>41</height>
+      <width>380</width>
+      <height>32</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Register Selected Course</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>20</y>
-      <width>101</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>My Schedule</string>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="myCoursesTable">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>40</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="1">
+      <widget class="QPushButton" name="Drop_Course_Button">
+       <property name="text">
+        <string>Drop Course</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="registercourse_Button">
+       <property name="font">
+        <font>
+         <family>.AppleSystemUIFont</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Register Course</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>View Schedule</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -4,17 +4,46 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QTableWidgetItem>
+#include "registration_system.h"
+#include "student.h"
+#include "registercourse.h"
+#include "dropcoursewindow.h"
+#include "viewschedule.h"
 
 StudentWindow::StudentWindow(const QString &studentUsername, QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::StudentWindow),
-    currentStudent(studentUsername)
+    currentStudent("", studentUsername, "", "")
 {
     ui->setupUi(this);
+    
+    //load students
+    r.loadstudents();
+    
+    //find student
+    bool found = false;
+    for (const auto &student : r.studentList) {
+        if (student.email == studentUsername) {
+            currentStudent = student;
+            found = true;
+            break;
+        }
+    }
+    
+    if (!found) {
+        //student not found
+        QMessageBox::warning(this, "Warning", "Student data not found. Some features may not work.");
+    }
+
+    //set welcome message
+    ui->welcome_Message->setText("Welcome " + currentStudent.name);
 
     loadCoursesFromFile();
     fillAvailableCoursesTable();
     fillMyCoursesTable();
+    
+    //load courses
+    r.loadcourses();
 }
 
 StudentWindow::~StudentWindow()
@@ -26,93 +55,106 @@ void StudentWindow::loadCoursesFromFile()
 {
     allCourses.clear();
 
-    QFile file("courses.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "Error", "Could not open courses.txt");
-        return;
+    //load courses
+    r.loadcourses();
+    
+    //copy to allcourses
+    for (const auto &course : r.courseList) {
+        allCourses.append(course);
     }
+}
 
-    QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString id, name, time;
-        in >> id >> name >> time;
-        if (!id.isEmpty() && !name.isEmpty() && !time.isEmpty()) {
-           allCourses.append(Course(id, name, "", "", 0, time, 0));
+
+
+void StudentWindow::on_registercourse_Button_clicked()
+{
+    //reload student data
+    r.loadstudents();
+    for (const auto &student : r.studentList) {
+        if (student.id == currentStudent.id) {
+            currentStudent = student;
+            break;
         }
     }
-
-    file.close();
+    
+    registercourse* RC = new registercourse(currentStudent, this);
+    RC->show();
 }
 
 void StudentWindow::fillAvailableCoursesTable()
 {
-    ui->availableCoursesTable->clear();
-    ui->availableCoursesTable->setRowCount(allCourses.size());
-    ui->availableCoursesTable->setColumnCount(3);
-
-    QStringList headers;
-    headers << "ID" << "Name" << "Time";
-    ui->availableCoursesTable->setHorizontalHeaderLabels(headers);
-
-    for (int i = 0; i < allCourses.size(); ++i) {
-        ui->availableCoursesTable->setItem(i, 0,
-                                           new QTableWidgetItem(allCourses[i].id));
-        ui->availableCoursesTable->setItem(i, 1,
-                                           new QTableWidgetItem(allCourses[i].name));
-        ui->availableCoursesTable->setItem(i, 2,
-                                           new QTableWidgetItem(allCourses[i].timeSlot));
-    }
+    //load courses
+    r.loadcourses();
+    
+    //reload courses
+    loadCoursesFromFile();
+    
+    //placeholder for table
 }
 
 void StudentWindow::fillMyCoursesTable()
 {
-    const auto &v = currentStudent.registered;
-
-    ui->myCoursesTable->clear();
-    ui->myCoursesTable->setRowCount((int)v.size());
-    ui->myCoursesTable->setColumnCount(3);
-
-    QStringList headers;
-    headers << "ID" << "Name" << "Time";
-    ui->myCoursesTable->setHorizontalHeaderLabels(headers);
-
-    for (int i = 0; i < (int)v.size(); ++i) {
-        ui->myCoursesTable->setItem(i, 0,
-                                    new QTableWidgetItem(v[i].id));
-        ui->myCoursesTable->setItem(i, 1,
-                                    new QTableWidgetItem(v[i].name));
-        ui->myCoursesTable->setItem(i, 2,
-                                    new QTableWidgetItem(v[i].timeSlot));
+    // Reload student data to get latest registered courses
+    r.loadstudents();
+    
+    //find and update student
+    for (const auto &student : r.studentList) {
+        if (student.id == currentStudent.id) {
+            currentStudent = student;
+            break;
+        }
     }
+    
+    //placeholder for table
 }
 
 void StudentWindow::on_registerButton_clicked()
 {
-    int row = ui->availableCoursesTable->currentRow();
-
-    if (row < 0) {
-        QMessageBox::warning(this, "Error", "Please select a course.");
-        return;
-    }
-
-
-    Course c = allCourses[row];
-
-
-    if (currentStudent.alreadyRegistered(c)) {
-        QMessageBox::warning(this, "Error", "You are already registered in this course.");
-        return;
-    }
-
-
-    if (currentStudent.hasTimeConflict(c)) {
-        QMessageBox::warning(this, "Error", "Time conflict with another registered course.");
-        return;
-    }
-
-
-    currentStudent.addCourse(c);
-
-    QMessageBox::information(this, "Success", "Course registered.");
-    fillMyCoursesTable();
+    //placeholder for registration
+    QMessageBox::information(this, "Register", "Course registration functionality");
 }
+
+void StudentWindow::on_pushButton_clicked()
+{
+    //placeholder
+    QMessageBox::information(this, "Action", "Button clicked");
+}
+
+
+void StudentWindow::on_pushButton_3_clicked()
+{
+
+}
+
+
+void StudentWindow::on_Drop_Course_Button_clicked()
+{
+    //reload student data
+    r.loadstudents();
+    for (const auto &student : r.studentList) {
+        if (student.id == currentStudent.id) {
+            currentStudent = student;
+            break;
+        }
+    }
+    
+    dropcoursewindow* DCW = new dropcoursewindow(currentStudent, this);
+    DCW->show();
+}
+
+
+void StudentWindow::on_pushButton_2_clicked()
+{
+    // Reload student data to get latest registered courses
+    r.loadstudents();
+    for (const auto &student : r.studentList) {
+        if (student.id == currentStudent.id) {
+            currentStudent = student;
+            break;
+        }
+    }
+    
+    viewschedule* VS = new viewschedule(currentStudent, this);
+    VS->show();
+}
+

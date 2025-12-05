@@ -18,6 +18,8 @@ public:
 private slots:
     void on_Delete_Push_Button_clicked();
 
+    void on_Cancel_Push_Button_clicked();
+
 private:
     Ui::DeleteCourse *ui;
 };

@@ -12,7 +12,7 @@ class adminDashboard : public QDialog
     Q_OBJECT
 
 public:
-    explicit adminDashboard(QWidget *parent = nullptr);
+    explicit adminDashboard(const QString &adminEmail = "", QWidget *parent = nullptr);
     ~adminDashboard();
 
 private slots:
@@ -26,8 +26,25 @@ private slots:
     void on_Delete_Course_Button_clicked();
 
 
+    void on_Add_Instructor_Button_clicked();
+
+    void on_Delete_Instructor_Button_clicked();
+
+    void on_List_Students_Button_clicked();
+
+    void on_List_Courses_Button_clicked();
+
+    void on_List_Instructors_Button_clicked();
+    
+    void on_Edit_Course_Button_clicked();
+    
+    void on_Reports_Button_clicked();
+    
+    void on_Statistics_Button_clicked();
+
 private:
     Ui::adminDashboard *ui;
+    QString adminEmail;
 };
 
 #endif // ADMINDASHBOARD_H

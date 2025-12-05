@@ -1,6 +1,9 @@
 #include "deletecourse.h"
 #include "ui_deletecourse.h"
 #include <fstream>
+#include <QMessageBox>
+#include "registration_system.h"
+
 DeleteCourse::DeleteCourse(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::DeleteCourse)
@@ -16,24 +19,37 @@ DeleteCourse::~DeleteCourse()
 void DeleteCourse::on_Delete_Push_Button_clicked()
 {
     QString id = ui->id_Line_Edit->text();
-    std::string idStr = id.toStdString();
-
-    std::fstream file("/Users/yasser/University_Course_Registration_System/University_Course_Sytem/Courses.txt", std::ios::in);
-    std::fstream temp("/Users/yasser/University_Course_Registration_System/University_Course_Sytem/temp.txt", std::ios::out);
-
-    std::string line;
-    while (std::getline(file, line)) {
-        if (line.find(idStr) == std::string::npos)
-            temp << line << '\n';
+    
+    if (id.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Please enter a course ID.");
+        return;
     }
+    
+    // Load courses from file
+    r.loadcourses();
+    
+    // Find and remove the course with matching ID
+    bool found = false;
+    for (auto it = r.courseList.begin(); it != r.courseList.end(); ++it) {
+        if (it->id == id) {
+            r.courseList.erase(it);
+            found = true;
+            break;
+        }
+    }
+    
+    if (found) {
+        // Save the updated list
+        r.savecourses();
+        QMessageBox::information(this, "Success", "Course deleted successfully.");
+        hide();
+    } else {
+        QMessageBox::warning(this, "Error", "Course with this ID not found.");
+    }
+}
 
-    file.close();
-    temp.close();
-
-    std::remove("/Users/yasser/University_Course_Registration_System/University_Course_Sytem/Courses.txt");
-    std::rename("/Users/yasser/University_Course_Registration_System/University_Course_Sytem/temp.txt",
-                "/Users/yasser/University_Course_Registration_System/University_Course_Sytem/Courses.txt");
-
+void DeleteCourse::on_Cancel_Push_Button_clicked()
+{
     hide();
 }
 

@@ -3,12 +3,16 @@
 
 #include <QMainWindow>
 #include <QVector>
+#include <QWidget>
 #include "student.h"
 #include "course.h"
 
 namespace Ui {
 class StudentWindow;
 }
+
+// Forward declaration
+class registercourse;
 
 class StudentWindow : public QMainWindow
 {
@@ -21,6 +25,16 @@ public:
 
 private slots:
     void on_registerButton_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_registercourse_Button_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_Drop_Course_Button_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::StudentWindow *ui;

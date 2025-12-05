@@ -2,6 +2,10 @@
 #include "ui_addcourse.h"
 #include <iostream>
 #include <fstream>
+#include <QMessageBox>
+#include "registration_system.h"
+#include "course.h"
+
 AddCourse::AddCourse(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddCourse)
@@ -16,40 +20,75 @@ AddCourse::~AddCourse()
 
 void AddCourse::on_done_push_Button_clicked()
 {
+    QString name = ui->nameLE->text();
+    QString id = ui->idLE->text();
+    QString creditStr = ui->cdLE->text();
+    QString enrollmentStr = ui->meLE->text();
+    QString schedule = ui->stLE->text();
+    QString department = ui->Department->text();
+    QString instructorId = ui->instrcutor_ID->text();
 
-        QString name, id, credit, enrollment, schedule, instructor;
-        std::string n, i, c, e, s, ins;
+    //validate fields
+    if (name.isEmpty() || id.isEmpty() || creditStr.isEmpty() || 
+        enrollmentStr.isEmpty() || schedule.isEmpty() || department.isEmpty() || instructorId.isEmpty()) {
+        QMessageBox::warning(this, "Error", "All fields must be filled out.");
+        return;
+    }
 
-        name = ui->nameLE->text();
-        n = name.toStdString();
+    //convert to int
+    bool creditOk, enrollmentOk;
+    int creditHours = creditStr.toInt(&creditOk);
+    int maxEnrollment = enrollmentStr.toInt(&enrollmentOk);
 
-        id = ui->idLE->text();
-        i = id.toStdString();
+    if (!creditOk || !enrollmentOk || creditHours <= 0 || maxEnrollment <= 0) {
+        QMessageBox::warning(this, "Error", "Credit hours and max enrollment must be positive numbers.");
+        return;
+    }
 
-        credit = ui-> cdLE ->text();
-        c = credit.toStdString();
-
-        enrollment = ui->meLE->text();
-        e = enrollment.toStdString();
-
-        schedule = ui->stLE->text();
-        s = schedule.toStdString();
-
-        instructor = ui->InstructorLe->text();
-        ins = instructor.toStdString();
-
-        std::ofstream file("/Users/yasser/University_Course_Registration_System/University_Course_Sytem/courses.txt", std::ios::app);
-        if (!file.is_open()) {
-            qCritical() << "Failed to open file for writing.";
+    //check if course id exists
+    r.loadcourses();
+    for (const auto &course : r.courseList) {
+        if (course.id == id) {
+            QMessageBox::warning(this, "Error", "A course with this ID already exists.");
             return;
         }
-
-        // Write course data to file
-        file << n << " " << i << " " << c << " " << e << " " << s << " " << ins << '\n';
-        file.close();
-
-        hide();
     }
+
+    //load instructors
+    r.loadinstructors();
+    
+    //find instructor by id
+    QString instructorName = "";
+    bool instructorFound = false;
+    int instructorIndex = -1;
+    for (size_t i = 0; i < r.instructorList.size(); i++) {
+        if (r.instructorList[i].InstructorId == instructorId) {
+            instructorName = r.instructorList[i].Name;
+            instructorIndex = i;
+            instructorFound = true;
+            break;
+        }
+    }
+    
+    if (!instructorFound) {
+        QMessageBox::warning(this, "Error", "Instructor with this ID does not exist.");
+        return;
+    }
+
+    //create new course
+    Course newCourse(id, name, instructorName, department, creditHours, schedule, maxEnrollment);
+    r.courseList.push_back(newCourse);
+    
+    //add course to instructor
+    r.instructorList[instructorIndex].assignedCourses.push_back(id);
+    
+    //save courses and instructors
+    r.savecourses();
+    r.saveinstructors();
+
+    QMessageBox::information(this, "Success", "Course added successfully and assigned to " + instructorName + ".");
+    hide();
+}
 
 
 
